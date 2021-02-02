@@ -1,38 +1,59 @@
-.App {
+.farm {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.farm-header {
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.farm-body-wrapper {
+  display: flex;
+  flex-direction: row;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.farm-region {
+  width: 30%;
+  border: 1px solid black;
+  margin: 3.3%;
+}
+
+.house-region {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 3%;
 }
 
-.App-link {
-  color: #61dafb;
+.house-level {
+  border: 1px solid black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.house-attic {
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right:100px solid transparent;
+  border-bottom: 100px solid black;
+}
+
+.sensors {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.sensor {
+  border: 1px solid black;
+  margin: 2%;
+  padding: 1%
+}
+
+.garden-region {
+  display: flex;
+  flex-direction: column;
+  margin: 3%;
+}
+
+.garden-space {
+  border: 1px solid black;
+  margin: 2%;
 }

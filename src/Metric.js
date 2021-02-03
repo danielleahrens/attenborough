@@ -82,6 +82,22 @@ class Metric extends Component {
     })
   }
 
+  metricCallbackFunction(displayComponent, sensor) {
+    var sensorData = {}
+    this.state.sensorMetrics.map((sensorMetric) => {
+      if (sensorMetric['sensor_id'] == sensor['sensor']) {
+        sensorData = sensorMetric
+      }
+    })
+    this.props.metricCallback(
+      displayComponent,
+      this.props.region,
+      this.props.area,
+      this.props.space,
+      sensorData
+    )
+  }
+
   render() {
     const { error, isMetricsLoaded } = this.state
     if (error) {
@@ -91,23 +107,25 @@ class Metric extends Component {
     } else {
       return (
         <div className="metric-body">
-          {console.log(this.state.locations)}
+          {console.log(this.state)}
           {(Object.keys(this.state.locations).length > 0) ?
             <div>
               <div>
-                <h2>{this.props.region}</h2>
+                <h2 className="metric-region">{this.props.region}</h2>
                 {(this.props.area != '') ?
                 <div>
-                  <h3>{this.props.area}</h3>
+                  <h3 className="metric-area">{this.props.area}</h3>
                   {Object.keys(this.state.locations).map((location) => {
                     return (
                       <div>
-                        <h4>
-                          {location}
-                        </h4>
+                        <h4 className="metric-space">{location}</h4>
                         {Object.keys(this.state['locations'][[location]]).map((sensor) => {
                         return (
-                          <SensorMetric measurements={this.state.['locations'][[location]][[sensor]]['measurement']} sensor={sensor} />
+                          <SensorMetric
+                            measurements={this.state.['locations'][[location]][[sensor]]['measurement']}
+                            sensor={sensor}
+                            sensorMetricCallback = {this.metricCallbackFunction.bind(this)}
+                          />
                         )
                         })}
                       </div>
@@ -119,7 +137,7 @@ class Metric extends Component {
                   {(Object.keys(this.state[[this.props.region]])).map((area) => {
                     return (
                       <div>
-                        <h3>{area}</h3>
+                        <h3 className="metric-area">{area}</h3>
                         {this.state[[this.props.region]][[area]].map((space) => {
                           return (
                             <div>
@@ -127,10 +145,14 @@ class Metric extends Component {
                                 if (space == presentlocation) {
                                   return (
                                     <div>
-                                      <h4>{space}</h4>
+                                      <h4 className="metric-space">{space}</h4>
                                       {Object.keys(this.state['locations'][[space]]).map((sensor) => {
                                       return (
-                                        <SensorMetric measurements={this.state.['locations'][[space]][[sensor]]['measurement']} sensor={sensor} />
+                                        <SensorMetric
+                                          measurements={this.state.['locations'][[space]][[sensor]]['measurement']}
+                                          sensor={sensor}
+                                          sensorMetricCallback = {this.metricCallbackFunction.bind(this)}
+                                        />
                                       )
                                       })}
                                     </div>
@@ -147,10 +169,6 @@ class Metric extends Component {
               </div>
             </div>
             : <div/>}
-          <h2>You're in Metrics land now!</h2>
-          <div>here is the region {this.props.region}</div>
-          <div>here is the area {this.props.area}</div>
-          <div>here is the space {this.props.space}</div>
         </div>
       );
     }

@@ -1,59 +1,43 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Farm from './Farm.js'
+import Metric from './Metric.js'
 
-function App() {
-  return (
-    <div className="farm">
-      <header className="farm-header"><h1>Welcome to the Farm!</h1></header>
-      <body className="farm-body">
-        <div className="farm-body-wrapper">
-          <div className="farm-region">
-            <h2>House</h2>
-            <div className="house-region">
-              <div className="house-attic"></div>
-              <div className="house-level">
-                <h3>Upstairs</h3>
-                <div className="sensors">
-                  <div className="sensor">brownBat</div>
-                </div>
-              </div>
-              <div className="house-level">
-                <h3>First Floor</h3>
-                <div className="sensors">
-                  <div className="sensor">fruitBat</div>
-                  <div className="sensor">hoaryBat</div>
-                </div>
-              </div>
-              <div className="house-level">
-                <h3>Basement</h3>
-                <div className="sensors">
-                  <div className="sensor">vampireBat</div>
-                  <div className="sensor">horseshoeBat</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="farm-region">
-            <h2>Garden</h2>
-            <div className="garden-region">
-              <div className="garden-space">
-                <h3>Cold Frames</h3>
-              </div>
-              <div className="garden-space">
-                <h3>Garden Beds</h3>
-              </div>
-              <div className="garden-space">
-                <h3>Compost Pile</h3>
-              </div>
-            </div>
-          </div>
-          <div className="farm-region">
-            <h2>Chicken Coop</h2>
-          </div>
-        </div>
-      </body>
-    </div>
-  );
+class App extends React.Component {
+
+  state = {
+    display: '',
+    region: 'testRegion',
+    area: 'testArea',
+    space: 'testSpace'
+  }
+
+  componentDidMount() {
+    this.setState({
+      display: 'Farm',
+    })
+  }
+
+  callbackFunction(displayComponent, region, area, space) {
+    this.setState(state => ({
+      display: displayComponent,
+      region: region,
+      area: area,
+      space: space
+    }));
+  }
+
+  render() {
+    return (
+      <div className="farm">
+        <header className="farm-header"><h1><a onClick={() => {this.setState({display:'Farm'})}}>Welcome to the Farm!</a></h1></header>
+        <body>
+          {(this.state.display === 'Farm') ? <Farm farmCallback = {this.callbackFunction.bind(this)} /> : <div />}
+          {(this.state.display === 'Metric') ? <Metric region = {this.state.region} area = {this.state.area} space = {this.state.space}/> : <div />}
+        </body>
+      </div>
+    );
+  }
 }
 
 export default App;

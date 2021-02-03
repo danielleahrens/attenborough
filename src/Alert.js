@@ -15,7 +15,6 @@ class Alert extends Component {
   }
 
   handleChange(e, measurement, limitType) {
-    console.log('value: ', e.target.value, 'measurement: ', measurement, 'limit type', limitType)
     var newAlert = {}
     if (this.state.alert) {
       newAlert = this.state.alert
@@ -57,6 +56,19 @@ class Alert extends Component {
 
   updateAlert() {
     if (!this.state.errorMessage) {
+      var body = {}
+      body['sensor_id'] = [this.props.sensor['sensor_id']]
+      body['sensor_type'] = this.props.sensor['sensor_type']
+      body['alert'] = this.state.alert
+
+      const requestOptions = {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Access-Control-Allow-Origin': 'http://localhost:3000'},
+        body: JSON.stringify(body)
+      }
+      console.log('request body', JSON.stringify(body))
+      fetch('http://localhost:5000/sensor/metric/alert', requestOptions)
+        .then(response => console.log(response.json()))
       this.props.alertCallback('Metric', this.props.region, this.props.area, this.props.space, '')
     } else {
       console.log('ERROR: missing form data, will not submit update request')

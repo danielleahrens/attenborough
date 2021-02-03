@@ -34,11 +34,8 @@ class Alert extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('here is state', this.state)
     var measurements = Object.keys(this.props.sensor.measurement)
-    console.log('here is measurements', measurements)
     measurements.map((measurement) => {
-      console.log('here is a measurement', measurement)
       if (!this.state.alert[[measurement]]) {
         console.log('ERROR: measurement type missing')
         this.setState({errorMessage: "ERROR: All measurements types must have an alert fields filled in to submit"})
@@ -50,7 +47,6 @@ class Alert extends Component {
         console.log('ERROR: limit type missing')
         this.setState({errorMessage: "ERROR: All limit types fields must be filled in to submit"})
       } else {
-        console.log('No errors present')
         this.setState({errorMessage: null})
       }
     })
@@ -60,12 +56,10 @@ class Alert extends Component {
   }
 
   updateAlert() {
-    console.log('here is error message', this.state.errorMessage)
     if (!this.state.errorMessage) {
-      console.log('going to updateAlert now, heres state', this.state)
       this.props.alertCallback('Metric', this.props.region, this.props.area, this.props.space, '')
     } else {
-      console.log('error exists')
+      console.log('ERROR: missing form data, will not submit update request')
     }
   }
 

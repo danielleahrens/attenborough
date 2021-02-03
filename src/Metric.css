@@ -1,3 +1,51 @@
 .metric-body {
   text-align: center;
 }
+
+.metric-measurements-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.metric-measurements {
+  margin: 20px;
+}
+
+.metric-sensor {
+  text-align: left;
+  margin-left: 10%;
+  margin-right: 10%
+}
+
+.metric-sensor-actions-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-left: 7.5%;
+  margin-right: 30%;
+}
+
+.metric-sensor-action {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.metric-measurement-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.metric-measurement {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.metric-measurement-ok {
+  background-color: green;
+}
+
+.metric-measurement-alert {
+  background-color: red;
+}

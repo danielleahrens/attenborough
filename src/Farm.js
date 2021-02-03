@@ -109,7 +109,7 @@ class Farm extends Component {
           this.setState({
             isLoaded: true,
             sensors: result.items
-          }, () => {this.organizeByLocationAndSetState()});
+          }, () => {this.organizeByLocation()});
         },
         (error) => {
           this.setState({
@@ -120,7 +120,7 @@ class Farm extends Component {
       )
   }
 
-  organizeByLocationAndSetState() {
+  organizeByLocation() {
     var locations = Object.keys(this.state.locations)
     var updateSensors = this.state.sensors
     var newLocations = this.state.locations

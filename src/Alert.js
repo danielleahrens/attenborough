@@ -40,19 +40,33 @@ class Alert extends Component {
     measurements.map((measurement) => {
       console.log('here is a measurement', measurement)
       if (!this.state.alert[[measurement]]) {
-        console.log('ERROR')
-        this.setState({errorMessage: "all alert fields must be filled in to submit"})
+        console.log('ERROR: measurement type missing')
+        this.setState({errorMessage: "ERROR: All measurements types must have an alert fields filled in to submit"})
+      } else if (
+        !this.state.alert[[measurement]]['upper'] ||
+        !this.state.alert[[measurement]]['lower'] ||
+        !this.state.alert[[measurement]]['time_s']
+      ) {
+        console.log('ERROR: limit type missing')
+        this.setState({errorMessage: "ERROR: All limit types fields must be filled in to submit"})
+      } else {
+        console.log('No errors present')
+        this.setState({errorMessage: null})
       }
     })
-    if (!this.state.errorMessage) {
-      console.log('going to updateAlert now, heres state', this.state)
+    const timer = setTimeout(() => {
       this.updateAlert()
-    }
+    }, 1000);
   }
 
-  updateAlert(e) {
-    console.log('ready to submit alert')
-    this.props.alertCallback('Metric', this.props.region, this.props.area, this.props.space, '')
+  updateAlert() {
+    console.log('here is error message', this.state.errorMessage)
+    if (!this.state.errorMessage) {
+      console.log('going to updateAlert now, heres state', this.state)
+      this.props.alertCallback('Metric', this.props.region, this.props.area, this.props.space, '')
+    } else {
+      console.log('error exists')
+    }
   }
 
   render() {
@@ -97,7 +111,7 @@ class Alert extends Component {
               </div>
             )
           })}
-          {(this.state.errorMessage) ? <div>{this.state.errorMessage}</div>: <div/>}
+          {(this.state.errorMessage) ? <div>{this.state.errorMessage}</div> : <div/>}
           <input type="submit" value="Submit" onClick={(e) => {this.handleSubmit(e)}}></input>
         </form>
         :
@@ -135,6 +149,7 @@ class Alert extends Component {
               </div>
             )
           })}
+          {(this.state.errorMessage) ? <div>{this.state.errorMessage}</div> : <div/>}
           <input type="submit" value="Submit" onClick={(e) => {this.handleSubmit(e)}}></input>
         </form>
       }

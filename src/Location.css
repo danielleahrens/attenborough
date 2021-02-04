@@ -1,3 +1,9 @@
+.location {
+  background-color: white;
+  height: 88vh;
+  overflow-y: scroll;
+}
+
 .location-form-items-wrapper {
   display: flex;
   flex-direction: row;

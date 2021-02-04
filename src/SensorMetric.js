@@ -14,17 +14,17 @@ class SensorMetric extends Component {
               <div className="metric-sensor-actions-wrapper">
               <div className="metric-sensor-action">
                 <a onClick={() => {this.props.sensorMetricCallback('MetricDetail', {sensor})}}>
-                  More Detail
+                  <b>More Detail</b>
                 </a>
               </div>
                 <div className="metric-sensor-action">
                   <a onClick={() => {this.props.sensorMetricCallback('Alert', {sensor})}}>
-                    Update Alert
+                    <b>Update Alert</b>
                   </a>
                 </div>
                 <div className="metric-sensor-action">
                   <a onClick={() => {this.props.sensorMetricCallback('Location', {sensor})}}>
-                    Update Location
+                    <b>Update Location</b>
                   </a>
                 </div>
               </div>
@@ -36,8 +36,8 @@ class SensorMetric extends Component {
                   {Object.keys(measurements).map((measurement) => {
                     return (
                       <div className="metric-measurement">
-                        <p>{measurement}</p>
-                        <p>{measurements[[measurement]]['current']}</p>
+                        <p>{measurement.charAt(0).toUpperCase() + measurement.slice(1)}:</p>
+                        <p>{measurements[[measurement]]['current']} {measurements[[measurement]]['uom']}</p>
                       </div>
                     )
                   })}
@@ -49,8 +49,8 @@ class SensorMetric extends Component {
                   {Object.keys(measurements).map((measurement) => {
                     return (
                       <div className="metric-measurement">
-                        <p>{measurement}</p>
-                        <p>{measurements[[measurement]]['high']}</p>
+                        <p>{measurement.charAt(0).toUpperCase() + measurement.slice(1)}:</p>
+                        <p>{measurements[[measurement]]['high']} {measurements[[measurement]]['uom']}</p>
                       </div>
                     )
                   })}
@@ -62,8 +62,8 @@ class SensorMetric extends Component {
                   {Object.keys(measurements).map((measurement) => {
                     return (
                       <div className="metric-measurement">
-                        <p>{measurement}</p>
-                        <p>{measurements[[measurement]]['low']}</p>
+                        <p>{measurement.charAt(0).toUpperCase() + measurement.slice(1)}:</p>
+                        <p>{measurements[[measurement]]['low']} {measurements[[measurement]]['uom']}</p>
                       </div>
                     )
                   })}

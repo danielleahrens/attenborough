@@ -1,0 +1,5 @@
+.detail {
+  background-color: white;
+  height: 88vh;
+  overflow-y: scroll;
+}

@@ -1,7 +1,10 @@
 .metric-sensor {
   text-align: left;
   margin-left: 9%;
-  margin-right: 9%
+  margin-right: 9%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 .metric-sensor-actions-wrapper {
@@ -14,7 +17,11 @@
 
 .metric-sensor-action {
   border: 1px solid black;
+  border-radius: 5px;
   padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #c3c6c9;
 }
 
 .metric-sensor-action:hover {
@@ -24,7 +31,9 @@
 .metric-measurements-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-right: 10%;
+  margin-left: 10%;
 }
 
 .metric-measurements {
@@ -32,16 +41,16 @@
 }
 
 .metric-measurement-type {
-  text-align: left;
+  text-align: center;
 }
 
 .metric-measurement-wrapper {
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .metric-measurement {
-  margin: 20px;
   padding: 10px;
   border: 1px solid black;
 }

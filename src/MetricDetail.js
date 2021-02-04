@@ -58,7 +58,7 @@ class MetricDetail extends Component {
       return <div>Loading...</div>
     } else {
       return (
-        <div>
+        <div className="detail">
           {console.log('this is the metrics', this.state)}
           <div>You Made it to the Detailed Metrics for the {this.props.sensor['sensor_id']} Sensor</div>
           {Object.keys(this.state.data).map((measurement) => {

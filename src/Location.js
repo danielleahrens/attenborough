@@ -32,7 +32,7 @@ class Location extends Component {
 
   render() {
     return (
-      <div>
+      <div className="location">
         {console.log('this is state', this.state)}
         {(this.props.sensor) ?
           <div>

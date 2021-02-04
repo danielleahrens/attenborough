@@ -110,7 +110,7 @@ class Metric extends Component {
           {(Object.keys(this.state.locations).length > 0) ?
             <div>
               <div>
-                <h2 className="metric-region">{this.props.region}</h2>
+                <h2 className="metric-region">{this.props.region.charAt(0).toUpperCase() + this.props.region.slice(1)}</h2>
                 {(this.props.area != '') ?
                 <div>
                   <h3 className="metric-area">{this.props.area}</h3>

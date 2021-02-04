@@ -76,7 +76,7 @@ class Alert extends Component {
 
   render() {
     return (
-      <div>
+      <div className="alert">
         <h2>Update {this.props.sensor['sensor_id']}'s Alerts</h2>
         {(this.props.sensor['alert']) ?
         <form>

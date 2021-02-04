@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Farm from './Farm.js'
 import Metric from './Metric.js'
+import MetricDetail from './MetricDetail.js'
 import Alert from './Alert.js'
 import Location from './Location.js'
 
@@ -44,6 +45,15 @@ class App extends React.Component {
               area = {this.state.area}
               space = {this.state.space}
               metricCallback = {this.callbackFunction.bind(this)}
+            />
+          : <div />}
+          {(this.state.display === 'MetricDetail') ?
+            <MetricDetail
+              sensor = {this.state.sensor}
+              region = {this.state.region}
+              area = {this.state.area}
+              space = {this.state.space}
+              metricDetailCallback = {this.callbackFunction.bind(this)}
             />
           : <div />}
           {(this.state.display === 'Alert') ?

@@ -17,6 +17,10 @@
   padding: 5px;
 }
 
+.metric-sensor-action:hover {
+  cursor: pointer;
+}
+
 .metric-measurements-wrapper {
   display: flex;
   flex-direction: row;

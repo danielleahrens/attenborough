@@ -12,7 +12,11 @@ class SensorMetric extends Component {
             <div className="metric-sensor">
               <h5>{sensor}</h5>
               <div className="metric-sensor-actions-wrapper">
-                <div className="metric-sensor-action">More Detail</div>
+              <div className="metric-sensor-action">
+                <a onClick={() => {this.props.sensorMetricCallback('MetricDetail', {sensor})}}>
+                  More Detail
+                </a>
+              </div>
                 <div className="metric-sensor-action">
                   <a onClick={() => {this.props.sensorMetricCallback('Alert', {sensor})}}>
                     Update Alert

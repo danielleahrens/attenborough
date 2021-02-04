@@ -4,7 +4,7 @@ import './SensorMetric.css';
 class SensorMetric extends Component {
 
   render() {
-    const { sensor, measurements } = this.props
+    const { sensor, measurements, alert } = this.props
     return(
       <div>
         {(measurements) ?
@@ -35,7 +35,11 @@ class SensorMetric extends Component {
                 <div className="metric-measurement-wrapper">
                   {Object.keys(measurements).map((measurement) => {
                     return (
-                      <div className="metric-measurement">
+                      <div className={
+                        (alert && measurements[[measurement]]['current'] > alert[[measurement]]['upper']
+                        || alert && measurements[[measurement]]['current'] < alert[[measurement]]['lower'])
+                        ? "metric-measurement metric-measurement-alert" : "metric-measurement metric-measurement-ok"
+                      }>
                         <p>{measurement.charAt(0).toUpperCase() + measurement.slice(1)}:</p>
                         <p>{measurements[[measurement]]['current']} {measurements[[measurement]]['uom']}</p>
                       </div>
@@ -48,7 +52,10 @@ class SensorMetric extends Component {
                 <div className="metric-measurement-wrapper">
                   {Object.keys(measurements).map((measurement) => {
                     return (
-                      <div className="metric-measurement">
+                      <div className={
+                        (alert && measurements[[measurement]]['current'] > alert[[measurement]]['upper'])
+                        ? "metric-measurement metric-measurement-alert" : "metric-measurement metric-measurement-ok"
+                      }>
                         <p>{measurement.charAt(0).toUpperCase() + measurement.slice(1)}:</p>
                         <p>{measurements[[measurement]]['high']} {measurements[[measurement]]['uom']}</p>
                       </div>
@@ -61,7 +68,10 @@ class SensorMetric extends Component {
                 <div className="metric-measurement-wrapper">
                   {Object.keys(measurements).map((measurement) => {
                     return (
-                      <div className="metric-measurement">
+                      <div className={
+                        (alert && measurements[[measurement]]['current'] < alert[[measurement]]['lower'])
+                        ? "metric-measurement metric-measurement-alert" : "metric-measurement metric-measurement-ok"
+                      }>
                         <p>{measurement.charAt(0).toUpperCase() + measurement.slice(1)}:</p>
                         <p>{measurements[[measurement]]['low']} {measurements[[measurement]]['uom']}</p>
                       </div>

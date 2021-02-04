@@ -123,6 +123,7 @@ class Metric extends Component {
                           <SensorMetric
                             measurements={this.state.['locations'][[location]][[sensor]]['measurement']}
                             sensor={sensor}
+                            alert={this.state.locations[[location]][[sensor]]['alert']}
                             sensorMetricCallback = {this.metricCallbackFunction.bind(this)}
                           />
                         )
@@ -150,6 +151,7 @@ class Metric extends Component {
                                         <SensorMetric
                                           measurements={this.state.['locations'][[space]][[sensor]]['measurement']}
                                           sensor={sensor}
+                                          alert={this.state.locations[[space]][[sensor]]['alert']}
                                           sensorMetricCallback = {this.metricCallbackFunction.bind(this)}
                                         />
                                       )

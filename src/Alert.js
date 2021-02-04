@@ -66,7 +66,6 @@ class Alert extends Component {
         headers: {'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Access-Control-Allow-Origin': 'http://localhost:3000'},
         body: JSON.stringify(body)
       }
-      console.log('request body', JSON.stringify(body))
       fetch('http://localhost:5000/sensor/metric/alert', requestOptions)
         .then(response => console.log(response.json()))
       this.props.alertCallback('Metric', this.props.region, this.props.area, this.props.space, '')

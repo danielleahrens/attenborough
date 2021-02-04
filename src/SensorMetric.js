@@ -18,7 +18,11 @@ class SensorMetric extends Component {
                     Update Alert
                   </a>
                 </div>
-                <div className="metric-sensor-action">Update Location</div>
+                <div className="metric-sensor-action">
+                  <a onClick={() => {this.props.sensorMetricCallback('Location', {sensor})}}>
+                    Update Location
+                  </a>
+                </div>
               </div>
             </div>
             <div className="metric-measurements-wrapper">

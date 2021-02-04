@@ -3,6 +3,7 @@ import './App.css';
 import Farm from './Farm.js'
 import Metric from './Metric.js'
 import Alert from './Alert.js'
+import Location from './Location.js'
 
 class App extends React.Component {
 
@@ -20,7 +21,6 @@ class App extends React.Component {
   }
 
   callbackFunction(displayComponent, region, area, space, sensor) {
-    console.log('this is sensor in app.js', sensor)
     this.setState(state => ({
       display: displayComponent,
       region: region,
@@ -53,6 +53,15 @@ class App extends React.Component {
               area = {this.state.area}
               space = {this.state.space}
               alertCallback = {this.callbackFunction.bind(this)}
+            />
+          : <div />}
+          {(this.state.display === 'Location') ?
+            <Location
+              sensor = {this.state.sensor}
+              region = {this.state.region}
+              area = {this.state.area}
+              space = {this.state.space}
+              locationCallback = {this.callbackFunction.bind(this)}
             />
           : <div />}
         </body>

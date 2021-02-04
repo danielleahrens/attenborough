@@ -107,7 +107,6 @@ class Metric extends Component {
     } else {
       return (
         <div className="metric-body">
-          {console.log(this.state)}
           {(Object.keys(this.state.locations).length > 0) ?
             <div>
               <div>

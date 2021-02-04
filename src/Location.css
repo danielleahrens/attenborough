@@ -1,0 +1,9 @@
+.location-form-items-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.location-form-item {
+  margin: 10px;
+}

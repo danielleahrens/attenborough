@@ -1,3 +1,12 @@
+.metric-measurement-error {
+  text-align: left;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 10.5%;
+  margin-right: 30%;
+}
+
 .metric-sensor {
   text-align: left;
   margin-left: 9%;

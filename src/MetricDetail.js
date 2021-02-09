@@ -65,9 +65,7 @@ class MetricDetail extends Component {
             var data = this.state.data
             return(
               <div>
-                <div>{measurement}</div>
-                <div>The Graph</div>
-
+                <div>{measurement.charAt(0).toUpperCase() + measurement.slice(1)}</div>
                   <LineChart
                     width={1700}
                     height={400}

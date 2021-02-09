@@ -9,6 +9,7 @@ class SensorMetric extends Component {
       <div>
         {(measurements) ?
           <div>
+            {console.log(this.props)}
             <div className="metric-sensor">
               <h5>{sensor}</h5>
               <div className="metric-sensor-actions-wrapper">
@@ -36,8 +37,8 @@ class SensorMetric extends Component {
                   {Object.keys(measurements).map((measurement) => {
                     return (
                       <div className={
-                        (alert && measurements[[measurement]]['current'] > alert[[measurement]]['upper']
-                        || alert && measurements[[measurement]]['current'] < alert[[measurement]]['lower'])
+                        (alert && measurements[[measurement]]['current'] > alert[[measurement]]['upper']['limit']
+                        || alert && measurements[[measurement]]['current'] < alert[[measurement]]['lower']['limit'])
                         ? "metric-measurement metric-measurement-alert" : "metric-measurement metric-measurement-ok"
                       }>
                         <p>{measurement.charAt(0).toUpperCase() + measurement.slice(1)}:</p>
@@ -53,7 +54,7 @@ class SensorMetric extends Component {
                   {Object.keys(measurements).map((measurement) => {
                     return (
                       <div className={
-                        (alert && measurements[[measurement]]['current'] > alert[[measurement]]['upper'])
+                        (alert && measurements[[measurement]]['current'] > alert[[measurement]]['upper']['limit'])
                         ? "metric-measurement metric-measurement-alert" : "metric-measurement metric-measurement-ok"
                       }>
                         <p>{measurement.charAt(0).toUpperCase() + measurement.slice(1)}:</p>
@@ -69,7 +70,7 @@ class SensorMetric extends Component {
                   {Object.keys(measurements).map((measurement) => {
                     return (
                       <div className={
-                        (alert && measurements[[measurement]]['current'] < alert[[measurement]]['lower'])
+                        (alert && measurements[[measurement]]['current'] < alert[[measurement]]['lower']['limit'])
                         ? "metric-measurement metric-measurement-alert" : "metric-measurement metric-measurement-ok"
                       }>
                         <p>{measurement.charAt(0).toUpperCase() + measurement.slice(1)}:</p>
@@ -82,8 +83,14 @@ class SensorMetric extends Component {
             </div>
           </div>
 
-          : <div/>}
-
+          :
+          <div>
+            <div className="metric-sensor">
+              <h5>{sensor}</h5>
+            </div>
+            <p className="metric-measurement-error">The {sensor} sensor hasn't logged any measurements in the last 24 hours.</p>
+          </div>
+          }
       </div>
     )
   }

@@ -19,12 +19,12 @@ class Alert extends Component {
     if (this.state.alert) {
       newAlert = this.state.alert
       if (newAlert[[measurement]]) {
-        newAlert[[measurement]][[limitType]] = parseFloat(e.target.value)
+        newAlert[[measurement]][[limitType]]['limit'] = parseFloat(e.target.value)
       } else {
-        newAlert[[measurement]] = {[limitType]: parseFloat(e.target.value)}
+        newAlert[[measurement]] = {[limitType]: {'limit': parseFloat(e.target.value), 'alerting': 'False'}}
       }
     } else {
-      newAlert[[measurement]] = {[limitType]: parseFloat(e.target.value)}
+      newAlert[[measurement]] = {[limitType]: {'limit': parseFloat(e.target.value), 'alerting': 'False'}}
     }
     this.setState({
       alert: newAlert
@@ -40,8 +40,7 @@ class Alert extends Component {
         this.setState({errorMessage: "ERROR: All measurements types must have an alert fields filled in to submit"})
       } else if (
         !this.state.alert[[measurement]]['upper'] ||
-        !this.state.alert[[measurement]]['lower'] ||
-        !this.state.alert[[measurement]]['time_s']
+        !this.state.alert[[measurement]]['lower']
       ) {
         console.log('ERROR: limit type missing')
         this.setState({errorMessage: "ERROR: All limit types fields must be filled in to submit"})
@@ -90,7 +89,7 @@ class Alert extends Component {
                     <input
                       className="alert-limit-input"
                       type="number"
-                      placeholder={this.props.sensor['alert'][[measurement]]['upper']}
+                      placeholder={this.props.sensor['alert'][[measurement]]['upper']['limit']}
                       onChange={(e) => {this.handleChange(e, measurement, 'upper')}}
                     />
                   </div>
@@ -99,17 +98,8 @@ class Alert extends Component {
                     <input
                       className="alert-limit-input"
                       type="number"
-                      placeholder={this.props.sensor['alert'][[measurement]]['lower']}
+                      placeholder={this.props.sensor['alert'][[measurement]]['lower']['limit']}
                       onChange={(e) => {this.handleChange(e, measurement, 'lower')}}
-                    />
-                  </div>
-                  <div className="alert-limit-wrapper">
-                    <h4 className="alert-limit-title">Time Limit:</h4>
-                    <input
-                      className="alert-limit-input"
-                      type="number"
-                      placeholder={this.props.sensor['alert'][[measurement]]['time_s']}
-                      onChange={(e) => {this.handleChange(e, measurement, 'time_s')}}
                     />
                   </div>
                 </div>
@@ -140,14 +130,6 @@ class Alert extends Component {
                       className="alert-limit-input"
                       type="number"
                       onChange={(e) => {this.handleChange(e, measurement, 'lower')}}
-                    />
-                  </div>
-                  <div className="alert-limit-wrapper">
-                    <h4 className="alert-limit-title">Time Limit:</h4>
-                    <input
-                      className="alert-limit-input"
-                      type="number"
-                      onChange={(e) => {this.handleChange(e, measurement, 'time_s')}}
                     />
                   </div>
                 </div>

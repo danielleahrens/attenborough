@@ -169,7 +169,9 @@ class Metric extends Component {
                 </div>}
               </div>
             </div>
-            : <div/>}
+            :
+            <div>This region doesn't have any sensors.</div>
+          }
         </div>
       );
     }

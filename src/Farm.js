@@ -298,7 +298,7 @@ class Farm extends Component {
               </div>
             </div>
             <div className="farm-region">
-              <h2 className="farm-region-h2"><a className="farm-region-label" onClick={() => {this.props.farmCallback('Metric', 'Coop', '', '')}}>Chicken Coop</a></h2>
+              <h2 className="farm-region-h2"><a className="farm-region-label" onClick={() => {this.props.farmCallback('Metric', 'coop', '', '')}}>Chicken Coop</a></h2>
               <div className="coop-attic"></div>
               <div className="coop-region">
                 {(Object.keys(this.state.locations['door']['sensors']).length > 0) ?

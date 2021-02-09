@@ -1,7 +1,6 @@
 .alert {
   background-color: white;
   height: 88vh;
-  overflow-y: scroll;
 }
 
 .alert-limits-wrapper{

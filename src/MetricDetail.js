@@ -39,14 +39,13 @@ class MetricDetail extends Component {
         if (dataPoint[2]) {
           var vertex = {'name': dataPoint[0], 'pt': dataPoint[2].toFixed(2)}
           if (this.state.sensorMetrics[0]['alert']) {
-            vertex['alertHigh'] = this.state.sensorMetrics[0]['alert'][[measurement]]['upper']
-            vertex['alertLow'] = this.state.sensorMetrics[0]['alert'][[measurement]]['lower']
+            vertex['alertHigh'] = this.state.sensorMetrics[0]['alert'][[measurement]]['upper']['limit']
+            vertex['alertLow'] = this.state.sensorMetrics[0]['alert'][[measurement]]['lower']['limit']
           }
           data[[measurement]].unshift(vertex)
         }
       })
     })
-    console.log('heres the data object', data)
     this.setState({data: data})
   }
 
@@ -59,13 +58,12 @@ class MetricDetail extends Component {
     } else {
       return (
         <div className="detail">
-          {console.log('this is the metrics', this.state)}
-          <div>You Made it to the Detailed Metrics for the {this.props.sensor['sensor_id']} Sensor</div>
+          <h2 className="detail-h2">Up to One Week of Measurement Data for the {this.props.sensor['sensor_id']} Sensor</h2>
           {Object.keys(this.state.data).map((measurement) => {
             var data = this.state.data
             return(
               <div>
-                <div>{measurement.charAt(0).toUpperCase() + measurement.slice(1)}</div>
+                <h3 className="detail-h3">{measurement.charAt(0).toUpperCase() + measurement.slice(1)}</h3>
                   <LineChart
                     width={1700}
                     height={400}
@@ -77,9 +75,9 @@ class MetricDetail extends Component {
                     <Tooltip />
                     <CartesianGrid stroke="#f5f5f5" />
                     <Legend />
-                    <Line type="monotone" dataKey="pt" stroke="#ff7300" yAxisId={0} />
-                    <Line type="monotone" dataKey="alertHigh" stroke="#8884d8" yAxisID={0}/>
-                    <Line type="monotone" dataKey="alertLow" stroke="#8884d8" yAxisID={0}/>
+                    <Line type="monotone" dataKey="pt" stroke="#2feb32" yAxisId={0} />
+                    <Line type="monotone" dataKey="alertHigh" stroke="#eb2f2f" yAxisID={0}/>
+                    <Line type="monotone" dataKey="alertLow" stroke="#382feb" yAxisID={0}/>
                   </LineChart>
               </div>
             )

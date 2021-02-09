@@ -1,5 +1,14 @@
 .detail {
   background-color: white;
-  height: 88vh;
-  overflow-y: scroll;
+  min-height: 88vh;
+  padding-bottom: 50px;
+}
+
+h2.detail-h2 {
+  padding-top: 20px;
+}
+
+h3.detail-h3 {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }

@@ -150,15 +150,15 @@ class Farm extends Component {
         <div className="farm-body">
           <div className="farm-body-wrapper">
             <div className="farm-region">
-              <h2><a className="farm-region-label" onClick={() => {this.props.farmCallback('Metric', 'house', '', '')}}>House</a></h2>
+              <h2 className="farm-region-h2"><a className="farm-region-label" onClick={() => {this.props.farmCallback('Metric', 'house', '', '')}}>House</a></h2>
               <div className="house-region">
                 <div className="house-attic"></div>
                 <div className="house-area">
-                  <h3><a className="house-area-label" onClick={() => {this.props.farmCallback('Metric', 'house', 'upstairs', '')}}>Upstairs</a></h3>
+                  <h3 className="farm-region-h3"><a className="house-area-label" onClick={() => {this.props.farmCallback('Metric', 'house', 'upstairs', '')}}>Upstairs</a></h3>
                   <div className="house-space-wrapper">
                     {(Object.keys(this.state.locations['bedroom1']['sensors']).length > 0) ?
                       <div className="house-space">
-                        <h4><a className="house-space-label" onClick={() => {this.props.farmCallback('Metric', 'house', 'upstairs', 'bedroom1')}}>Bedroom 1</a></h4>
+                        <h4 className="farm-region-h4"><a className="house-space-label" onClick={() => {this.props.farmCallback('Metric', 'house', 'upstairs', 'bedroom1')}}>Bedroom 1</a></h4>
                         <div className="sensors">
                           {Object.keys(this.state.locations.bedroom1.sensors).map((sensor) => {return <div className="sensor">{sensor}</div>})}
                         </div>
@@ -166,7 +166,7 @@ class Farm extends Component {
                     : <div /> }
                     {(Object.keys(this.state.locations['bedroom2']['sensors']).length > 0) ?
                       <div className="house-space">
-                        <h4><a className="house-space-label" onClick={() => {this.props.farmCallback('Metric', 'house', 'upstairs', 'bedroom2')}}>Bedroom 2</a></h4>
+                        <h4 className="farm-region-h4"><a className="house-space-label" onClick={() => {this.props.farmCallback('Metric', 'house', 'upstairs', 'bedroom2')}}>Bedroom 2</a></h4>
                         <div className="sensors">
                           {Object.keys(this.state.locations.bedroom2.sensors).map((sensor) => {return <div className="sensor">{sensor}</div>})}
                         </div>
@@ -175,11 +175,11 @@ class Farm extends Component {
                   </div>
                 </div>
                 <div className="house-area">
-                  <h3><a className="house-area-label" onClick={() => {this.props.farmCallback('Metric', 'house', 'firstFloor', '')}}>First Floor</a></h3>
+                  <h3 className="farm-region-h3"><a className="house-area-label" onClick={() => {this.props.farmCallback('Metric', 'house', 'firstFloor', '')}}>First Floor</a></h3>
                   <div className="house-space-wrapper">
                     {(Object.keys(this.state.locations['kitchen']['sensors']).length > 0) ?
                       <div className="house-space">
-                        <h4><a className="house-space-label" onClick={() => {this.props.farmCallback('Metric', 'house', 'firstFloor', 'kitchen')}}>Kitchen</a></h4>
+                        <h4 className="farm-region-h4"><a className="house-space-label" onClick={() => {this.props.farmCallback('Metric', 'house', 'firstFloor', 'kitchen')}}>Kitchen</a></h4>
                         <div className="sensors">
                           {Object.keys(this.state.locations.kitchen.sensors).map((sensor) => {return <div className="sensor">{sensor}</div>})}
                         </div>
@@ -187,7 +187,7 @@ class Farm extends Component {
                     : <div/>}
                     {(Object.keys(this.state.locations['porch']['sensors']).length > 0) ?
                       <div className="house-space">
-                        <h4><a className="house-space-label" onClick={() => {this.props.farmCallback('Metric', 'house', 'firstFloor', 'porch')}}>Porch</a></h4>
+                        <h4 className="farm-region-h4"><a className="house-space-label" onClick={() => {this.props.farmCallback('Metric', 'house', 'firstFloor', 'porch')}}>Porch</a></h4>
                         <div className="sensors">
                           {Object.keys(this.state.locations.porch.sensors).map((sensor) => {return <div className="sensor">{sensor}</div>})}
                         </div>
@@ -196,7 +196,7 @@ class Farm extends Component {
                   </div>
                 </div>
                 <div className="house-area">
-                  <h3><a className="house-area-label" onClick={() => {this.props.farmCallback('Metric', 'house', 'basement', '')}}>Basement</a></h3>
+                  <h3 className="farm-region-h3"><a className="house-area-label" onClick={() => {this.props.farmCallback('Metric', 'house', 'basement', '')}}>Basement</a></h3>
                   {(Object.keys(this.state.locations['porch']['sensors']).length > 0) ?
                     <div className="sensors">
                       {Object.keys(this.state.locations.basement.sensors).map((sensor) => {return <div className="sensor">{sensor}</div>})}
@@ -206,14 +206,14 @@ class Farm extends Component {
               </div>
             </div>
             <div className="farm-region">
-              <h2><a className="farm-region-label" onClick={() => {this.props.farmCallback('Metric', 'garden', '', '')}}>Garden</a></h2>
+              <h2 className="farm-region-h2"><a className="farm-region-label" onClick={() => {this.props.farmCallback('Metric', 'garden', '', '')}}>Garden</a></h2>
               <div className="garden-region">
                 <div className="garden-area">
-                  <h3><a className="garden-area-label" onClick={() => {this.props.farmCallback('Metric', 'garden', 'coldFrames', '')}}>Cold Frames</a></h3>
+                  <h3 className="farm-region-h3"><a className="garden-area-label" onClick={() => {this.props.farmCallback('Metric', 'garden', 'coldFrames', '')}}>Cold Frames</a></h3>
                   <div className="garden-space-wrapper">
                     {(Object.keys(this.state.locations['coldFrame1']['sensors']).length > 0) ?
                       <div className="garden-space">
-                        <h4><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'coldFrames', 'coldFrame1')}}>Cold Frame 1</a></h4>
+                        <h4 className="farm-region-h4"><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'coldFrames', 'coldFrame1')}}>Cold Frame 1</a></h4>
                         <div className="sensors">
                           {Object.keys(this.state.locations.coldFrame1.sensors).map((sensor) => {return <div className="sensor">{sensor}</div>})}
                         </div>
@@ -221,7 +221,7 @@ class Farm extends Component {
                     : <div/>}
                     {(Object.keys(this.state.locations['coldFrame2']['sensors']).length > 0) ?
                       <div className="garden-space">
-                        <h4><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'coldFrames', 'coldFrame2')}}>Cold Frame 2</a></h4>
+                        <h4 className="farm-region-h4"><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'coldFrames', 'coldFrame2')}}>Cold Frame 2</a></h4>
                         <div className="sensors">
                           {Object.keys(this.state.locations.coldFrame2.sensors).map((sensor) => {return <div className="sensor">{sensor}</div>})}
                         </div>
@@ -229,7 +229,7 @@ class Farm extends Component {
                     : <div />}
                     {(Object.keys(this.state.locations['coldFrame3']['sensors']).length > 0) ?
                       <div className="garden-space">
-                        <h4><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'coldFrames', 'coldFrame3')}}>Cold Frame 3</a></h4>
+                        <h4 className="farm-region-h4"><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'coldFrames', 'coldFrame3')}}>Cold Frame 3</a></h4>
                         <div className="sensors">
                           {Object.keys(this.state.locations.coldFrame3.sensors).map((sensor) => {return <div className="sensor">{sensor}</div>})}
                         </div>
@@ -238,11 +238,11 @@ class Farm extends Component {
                   </div>
                 </div>
                 <div className="garden-area">
-                  <h3><a className="garden-area-label" onClick={() => {this.props.farmCallback('Metric', 'garden', 'gardenBeds', '')}}>Garden Beds</a></h3>
+                  <h3 className="farm-region-h3"><a className="garden-area-label" onClick={() => {this.props.farmCallback('Metric', 'garden', 'gardenBeds', '')}}>Garden Beds</a></h3>
                   <div className="garden-space-wrapper">
                     {(Object.keys(this.state.locations['gardenBed1']['sensors']).length > 0) ?
                       <div className="garden-space">
-                        <h4><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'gardenBeds', 'gardenBed1')}}>Garden Bed 1</a></h4>
+                        <h4 className="farm-region-h4"><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'gardenBeds', 'gardenBed1')}}>Garden Bed 1</a></h4>
                         <div className="sensors">
                           {Object.keys(this.state.locations.gardenBed1.sensors).map((sensor) => {return <div className="sensor">{sensor}</div>})}
                         </div>
@@ -250,7 +250,7 @@ class Farm extends Component {
                     : <div />}
                     {(Object.keys(this.state.locations['gardenBed2']['sensors']).length > 0) ?
                       <div className="garden-space">
-                        <h4><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'gardenBeds', 'gardenBed2')}}>Garden Bed 2</a></h4>
+                        <h4 className="farm-region-h4"><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'gardenBeds', 'gardenBed2')}}>Garden Bed 2</a></h4>
                         <div className="sensors">
                           {Object.keys(this.state.locations.gardenBed2.sensors).map((sensor) => {return <div className="sensor">{sensor}</div>})}
                         </div>
@@ -258,7 +258,7 @@ class Farm extends Component {
                     : <div />}
                     {(Object.keys(this.state.locations['gardenBed3']['sensors']).length > 0) ?
                       <div className="garden-space">
-                        <h4><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'gardenBeds', 'gardenBed3')}}>Garden Bed 3</a></h4>
+                        <h4 className="farm-region-h4"><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'gardenBeds', 'gardenBed3')}}>Garden Bed 3</a></h4>
                         <div className="sensors">
                           {Object.keys(this.state.locations.gardenBed3.sensors).map((sensor) => {return <div className="sensor">{sensor}</div>})}
                         </div>
@@ -267,11 +267,11 @@ class Farm extends Component {
                   </div>
                 </div>
                 <div className="garden-area">
-                  <h3><a className="garden-area-label" onClick={() => {this.props.farmCallback('Metric', 'garden', 'compostPile', '')}}>Compost Pile</a></h3>
+                  <h3 className="farm-region-h3"><a className="garden-area-label" onClick={() => {this.props.farmCallback('Metric', 'garden', 'compostPile', '')}}>Compost Pile</a></h3>
                   <div className="garden-space-wrapper">
                     {(Object.keys(this.state.locations['oldestBin']['sensors']).length > 0) ?
                       <div className="garden-space">
-                        <h4><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'compostPile', 'oldestBin')}}>Oldest Compost Bin</a></h4>
+                        <h4 className="farm-region-h4"><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'compostPile', 'oldestBin')}}>Oldest Compost Bin</a></h4>
                         <div className="sensors">
                           {Object.keys(this.state.locations.oldestBin.sensors).map((sensor) => {return <div className="sensor">{sensor}</div>})}
                         </div>
@@ -279,7 +279,7 @@ class Farm extends Component {
                     : <div />}
                     {(Object.keys(this.state.locations['primaryBin']['sensors']).length > 0) ?
                       <div className="garden-space">
-                        <h4><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'compostPile', 'primaryBin')}}>Primary Compost Bin</a></h4>
+                        <h4 className="farm-region-h4"><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'compostPile', 'primaryBin')}}>Primary Compost Bin</a></h4>
                         <div className="sensors">
                           {Object.keys(this.state.locations.primaryBin.sensors).map((sensor) => {return <div className="sensor">{sensor}</div>})}
                         </div>
@@ -287,7 +287,7 @@ class Farm extends Component {
                     : <div />}
                     {(Object.keys(this.state.locations['intermediateBin']['sensors']).length > 0) ?
                       <div className="garden-space">
-                        <h4><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'compostPile', 'intermediateBin')}}>Intermediate Compost Bin</a></h4>
+                        <h4 className="farm-region-h4"><a onClick={() => {this.props.farmCallback('Metric', 'garden', 'compostPile', 'intermediateBin')}}>Intermediate Compost Bin</a></h4>
                         <div className="sensors">
                           {Object.keys(this.state.locations.intermediateBin.sensors).map((sensor) => {return <div className="sensor">{sensor}</div>})}
                         </div>
@@ -298,12 +298,12 @@ class Farm extends Component {
               </div>
             </div>
             <div className="farm-region">
-              <h2><a className="farm-region-label" onClick={() => {this.props.farmCallback('Metric', 'Coop', '', '')}}>Chicken Coop</a></h2>
+              <h2 className="farm-region-h2"><a className="farm-region-label" onClick={() => {this.props.farmCallback('Metric', 'Coop', '', '')}}>Chicken Coop</a></h2>
               <div className="coop-attic"></div>
               <div className="coop-region">
                 {(Object.keys(this.state.locations['door']['sensors']).length > 0) ?
                 <div className="coop-area">
-                  <h3>Door</h3>
+                  <h3 className="farm-region-h3">Door</h3>
                   <div className="coop-space-wrapper">
                     <div className="coop-space">
                       <div className="sensors">
@@ -315,7 +315,7 @@ class Farm extends Component {
                 : <div/>}
                 {(Object.keys(this.state.locations['heater']['sensors']).length > 0) ?
                 <div className="coop-area">
-                  <h3>Heating Lamp</h3>
+                  <h3 className="farm-region-h3">Heating Lamp</h3>
                   <div className="coop-space-wrapper">
                     <div className="coop-space">
                       <div className="sensors">
@@ -327,7 +327,7 @@ class Farm extends Component {
                 : <div/>}
                 {(Object.keys(this.state.locations['feeder']['sensors']).length > 0) ?
                 <div className="coop-area">
-                  <h3>Feeder</h3>
+                  <h3 className="farm-region-h3">Feeder</h3>
                   <div className="coop-space-wrapper">
                     <div className="coop-space">
                       <div className="sensors">
@@ -339,7 +339,7 @@ class Farm extends Component {
                 : <div/>}
                 {(Object.keys(this.state.locations['waterer']['sensors']).length > 0) ?
                 <div className="coop-area">
-                  <h3>Waterer</h3>
+                  <h3 className="farm-region-h3">Waterer</h3>
                   <div className="coop-space-wrapper">
                     <div className="coop-space">
                       <div className="sensors">

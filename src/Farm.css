@@ -5,6 +5,7 @@
 
 .farm-region {
   width: 32%;
+  min-height: 80vh;
   border: 1px solid black;
   border-radius: 10px;
   margin: 0.66%;
@@ -156,4 +157,74 @@
   border: 1px solid black;
   margin: 5%;
   padding: 2%;
+}
+
+h2.farm-region-h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+h3.farm-region-h3 {
+  font-size: 1.6em;
+  margin: 20px;
+}
+
+h4.farm-region-h4 {
+  font-size: 1.3em;
+  margin: 20px;
+}
+
+h5.farm-region-h5 {
+  font-size: 1.2em;
+  margin: 20px;
+}
+
+h6.farm-region-h6 {
+  font-size: 1.1em;
+  margin: 20px;
+}
+
+p.farm-region-p {
+  font-size: 1em;
+  margin: 20px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .farm-body-wrapper {
+    flex-wrap: wrap;
+  }
+
+  .farm-region {
+    width: 48vw;
+  }
+
+  .house-attic {
+    border-left: 22.5vw solid transparent;
+    border-right:22.5vw solid transparent;
+  }
+
+  .coop-attic {
+    border-left: 22.75vw solid transparent;
+    border-right: 22.75vw solid transparent;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .farm-body-wrapper {
+    flex-wrap: wrap;
+  }
+
+  .farm-region {
+    width: 98vw;
+  }
+
+  .house-attic {
+    border-left: 46vw solid transparent;
+    border-right:46vw solid transparent;
+  }
+
+  .coop-attic {
+    border-left: 46.25vw solid transparent;
+    border-right:46.25vw solid transparent;
+  }
 }

@@ -4,30 +4,46 @@ import './Location.css';
 class Location extends Component {
 
   componentDidMount() {
-    var location = this.props.sensor.location
-    this.setState({
-      location: location
-    })
+    if(Object.keys(this.props.sensor).includes('location')) {
+      var location = this.props.sensor.location
+      this.setState({
+        location: location
+      })
+    } else {
+      this.setState({
+        location: ''
+      })
+    }
   }
 
   handleChange(e) {
     this.setState({location: e.target.value})
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault()
     var body = {}
     body['sensor_id'] = [this.props.sensor['sensor_id']]
     body['sensor_type'] = this.props.sensor['sensor_type']
     body['location'] = this.state.location
-
+    console.log('body', body)
     const requestOptions = {
       method: 'PUT',
-      headers: {'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Access-Control-Allow-Origin': 'http://localhost:3000'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Origin': 'http://localhost:3000',
+        'Access-Control-Allow-Origin': 'http://localhost:3000',
+        'Authorization': 'Basic '+btoa(this.props.username + ':' + this.props.password)
+      },
       body: JSON.stringify(body)
     }
-    fetch('http://localhost:5000/sensor', requestOptions)
+    fetch('http://192.168.1.10:80/sensor', requestOptions)
       .then(response => console.log(response.json()))
-    this.props.alertCallback('Metric', this.props.region, this.props.area, this.props.space, '')
+    if(this.props.region) {
+      this.props.locationCallback('Metric', this.props.region, this.props.area, this.props.space, '')
+    } else {
+      this.props.locationCallback('Farm', '', '', '', '')
+    }
   }
 
   render() {
@@ -55,7 +71,7 @@ class Location extends Component {
                   />
                 }
               </div>
-              <input type="submit" value="Submit" onClick={() => {this.handleSubmit()}}/>
+              <input type="submit" value="Submit" onClick={(e) => {this.handleSubmit(e)}}/>
             </form>
           </div>
         : <div/>}

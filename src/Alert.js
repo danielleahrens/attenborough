@@ -8,27 +8,28 @@ class Alert extends Component {
   }
 
   componentDidMount() {
-    var alert = this.props.sensor.alert
-    this.setState({
-      alert: alert
-    })
+    if(Object.keys(this.props.sensor).includes('alert')) {
+      var alert = this.props.sensor.alert
+      this.setState({
+        alert: alert
+      })
+    } else {
+      this.setState({
+        alert: {}
+      })
+    }
   }
 
   handleChange(e, measurement, limitType) {
-    var newAlert = {}
-    if (this.state.alert) {
-      newAlert = this.state.alert
-      if (newAlert[[measurement]]) {
-        newAlert[[measurement]][[limitType]]['limit'] = parseFloat(e.target.value)
-      } else {
-        newAlert[[measurement]] = {[limitType]: {'limit': parseFloat(e.target.value), 'alerting': 'False'}}
-      }
+    var newAlert = this.state.alert
+    if (newAlert[[measurement]]) {
+      newAlert[[measurement]][[limitType]] = {'limit': parseFloat(e.target.value), 'alerting': 'False'}
     } else {
       newAlert[[measurement]] = {[limitType]: {'limit': parseFloat(e.target.value), 'alerting': 'False'}}
     }
     this.setState({
       alert: newAlert
-    })
+    }, () => {console.log('set state')})
   }
 
   handleSubmit(e) {
@@ -62,10 +63,15 @@ class Alert extends Component {
 
       const requestOptions = {
         method: 'PUT',
-        headers: {'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Access-Control-Allow-Origin': 'http://localhost:3000'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Origin': 'http://localhost:3000',
+          'Access-Control-Allow-Origin': 'http://localhost:3000',
+          'Authorization': 'Basic '+btoa(this.props.username + ':' + this.props.password)
+        },
         body: JSON.stringify(body)
       }
-      fetch('http://localhost:5000/sensor/metric/alert', requestOptions)
+      fetch('http://192.168.1.10:80/sensor/metric/alert', requestOptions)
         .then(response => console.log(response.json()))
       this.props.alertCallback('Metric', this.props.region, this.props.area, this.props.space, '')
     } else {

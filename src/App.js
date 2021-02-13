@@ -15,12 +15,6 @@ class App extends React.Component {
     space: ''
   }
 
-  componentDidMount() {
-    this.setState({
-      display: 'Farm',
-    })
-  }
-
   callbackFunction(displayComponent, region, area, space, sensor) {
     this.setState(state => ({
       display: displayComponent,
@@ -31,19 +25,46 @@ class App extends React.Component {
     }));
   }
 
+  handleChange(key, e) {
+    var stateObj = {}
+    stateObj[key] = e.target.value
+    this.setState(stateObj)
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.setState({display: 'Farm'})
+  }
+
   render() {
     return (
       <div className="app">
         <header className="app-header"><h1><a onClick={() => {this.setState({display:'Farm'})}}>Welcome to the IoT Farm!</a></h1></header>
         <body>
+          {(this.state.display === '') ?
+            <form>
+              <div>Please enter your username and password:</div>
+              <div>Username:</div>
+              <input type="text" onChange={(e) => {this.handleChange('username', e)}}></input>
+              <div>Password</div>
+              <input type="password" onChange={(e) => {this.handleChange('password', e)}}></input>
+              <input type="submit" onClick={(e) => {this.handleSubmit(e)}}></input>
+            </form>
+          : <div/>}
           {(this.state.display === 'Farm') ?
-            <Farm farmCallback = {this.callbackFunction.bind(this)} />
+            <Farm
+              username = {this.state.username}
+              password = {this.state.password}
+              farmCallback = {this.callbackFunction.bind(this)}
+            />
           : <div />}
           {(this.state.display === 'Metric') ?
             <Metric
               region = {this.state.region}
               area = {this.state.area}
               space = {this.state.space}
+              username = {this.state.username}
+              password = {this.state.password}
               metricCallback = {this.callbackFunction.bind(this)}
             />
           : <div />}
@@ -62,6 +83,8 @@ class App extends React.Component {
               region = {this.state.region}
               area = {this.state.area}
               space = {this.state.space}
+              username = {this.state.username}
+              password = {this.state.password}
               alertCallback = {this.callbackFunction.bind(this)}
             />
           : <div />}
@@ -71,6 +94,8 @@ class App extends React.Component {
               region = {this.state.region}
               area = {this.state.area}
               space = {this.state.space}
+              username = {this.state.username}
+              password = {this.state.password}
               locationCallback = {this.callbackFunction.bind(this)}
             />
           : <div />}

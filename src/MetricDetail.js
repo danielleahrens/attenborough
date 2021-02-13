@@ -12,7 +12,10 @@ class MetricDetail extends Component {
 
   componentDidMount() {
     var query = '?s=' + this.props.sensor['sensor_id']
-    fetch("http://localhost:5000/sensor/metric/detail" + query)
+    const requestOptions = {
+      headers: {'Authorization': 'Basic '+btoa(this.props.username + ':' + this.props.password)},
+    }
+    fetch("http://192.168.1.10:80/sensor/metric/detail" + query, requestOptions)
       .then(res => res.json())
       .then(
         (result) => {

@@ -105,7 +105,7 @@ class Farm extends Component {
     const requestOptions = {
       headers: {'Authorization': 'Basic '+btoa(this.props.username + ':' + this.props.password)},
     }
-    fetch("https://cenozoa.danielleahrens.com/api/v1/sensor", requestOptions)
+    fetch(this.props.url + "/api/v1/sensor", requestOptions)
       .then(res => res.json())
       .then(
         (result) => {

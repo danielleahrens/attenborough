@@ -15,7 +15,7 @@ class MetricDetail extends Component {
     const requestOptions = {
       headers: {'Authorization': 'Basic '+btoa(this.props.username + ':' + this.props.password)},
     }
-    fetch("https://cenozoa.danielleahrens.com/api/v1/sensor/metric/detail" + query, requestOptions)
+    fetch(this.props.url + "/api/v1/sensor/metric/detail" + query, requestOptions)
       .then(res => res.json())
       .then(
         (result) => {
@@ -35,7 +35,6 @@ class MetricDetail extends Component {
 
   structureData() {
     var data = {}
-    console.log('heres state', this.state)
     Object.keys(this.state.sensorMetrics[0]['measurement']).map((measurement) => {
       data[[measurement]] = []
       this.state.sensorMetrics[0]['measurement'][[measurement]].map((dataPoint) => {

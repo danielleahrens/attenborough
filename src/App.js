@@ -12,7 +12,8 @@ class App extends React.Component {
     display: '',
     region: '',
     area: '',
-    space: ''
+    space: '',
+    url: 'http://localhost:5000'
   }
 
   callbackFunction(displayComponent, region, area, space, sensor) {
@@ -61,6 +62,7 @@ class App extends React.Component {
             <Farm
               username = {this.state.username}
               password = {this.state.password}
+              url = {this.state.url}
               farmCallback = {this.callbackFunction.bind(this)}
             />
           : <div />}
@@ -71,6 +73,7 @@ class App extends React.Component {
               space = {this.state.space}
               username = {this.state.username}
               password = {this.state.password}
+              url = {this.state.url}
               metricCallback = {this.callbackFunction.bind(this)}
             />
           : <div />}
@@ -82,6 +85,7 @@ class App extends React.Component {
               space = {this.state.space}
               username = {this.state.username}
               password = {this.state.password}
+              url = {this.state.url}
               metricDetailCallback = {this.callbackFunction.bind(this)}
             />
           : <div />}
@@ -93,6 +97,7 @@ class App extends React.Component {
               space = {this.state.space}
               username = {this.state.username}
               password = {this.state.password}
+              url = {this.state.url}
               alertCallback = {this.callbackFunction.bind(this)}
             />
           : <div />}
@@ -104,6 +109,7 @@ class App extends React.Component {
               space = {this.state.space}
               username = {this.state.username}
               password = {this.state.password}
+              url = {this.state.url}
               locationCallback = {this.callbackFunction.bind(this)}
             />
           : <div />}

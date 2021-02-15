@@ -37,7 +37,7 @@ class Location extends Component {
       },
       body: JSON.stringify(body)
     }
-    fetch('https://cenozoa.danielleahrens.com/api/v1/sensor', requestOptions)
+    fetch(this.props.url + '/api/v1/sensor', requestOptions)
       .then(response => console.log(response.json()))
     if(this.props.region) {
       this.props.locationCallback('Metric', this.props.region, this.props.area, this.props.space, '')
@@ -49,7 +49,6 @@ class Location extends Component {
   render() {
     return (
       <div className="location">
-        {console.log('this is state', this.state)}
         {(this.props.sensor) ?
           <div>
             <div>Update Location of the {this.props.sensor['sensor_id']} Sensor</div>

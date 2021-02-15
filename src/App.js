@@ -42,13 +42,19 @@ class App extends React.Component {
         <header className="app-header"><h1><a onClick={() => {this.setState({display:'Farm'})}}>Welcome to the IoT Farm!</a></h1></header>
         <body>
           {(this.state.display === '') ?
-            <form>
-              <div>Please enter your username and password:</div>
-              <div>Username:</div>
-              <input type="text" onChange={(e) => {this.handleChange('username', e)}}></input>
-              <div>Password</div>
-              <input type="password" onChange={(e) => {this.handleChange('password', e)}}></input>
-              <input type="submit" onClick={(e) => {this.handleSubmit(e)}}></input>
+            <form className="app-auth">
+              <h2 className="app-auth-title">Sign-in</h2>
+              <div className="app-creds-wrapper">
+                <div className="app-creds-title">Username: </div>
+                <input type="text" onChange={(e) => {this.handleChange('username', e)}}></input>
+              </div>
+              <div className="app-creds-wrapper">
+                <div className="app-creds-title">Password: </div>
+                <input type="password" onChange={(e) => {this.handleChange('password', e)}}></input>
+              </div>
+              <div className="app-auth-button-wrapper">
+                <input className="app-auth-button" type="submit" onClick={(e) => {this.handleSubmit(e)}}></input>
+              </div>
             </form>
           : <div/>}
           {(this.state.display === 'Farm') ?
@@ -74,6 +80,8 @@ class App extends React.Component {
               region = {this.state.region}
               area = {this.state.area}
               space = {this.state.space}
+              username = {this.state.username}
+              password = {this.state.password}
               metricDetailCallback = {this.callbackFunction.bind(this)}
             />
           : <div />}

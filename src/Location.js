@@ -37,7 +37,7 @@ class Location extends Component {
       },
       body: JSON.stringify(body)
     }
-    fetch('http://192.168.1.10:80/sensor', requestOptions)
+    fetch('https://cenozoa.danielleahrens.com/api/v1/sensor', requestOptions)
       .then(response => console.log(response.json()))
     if(this.props.region) {
       this.props.locationCallback('Metric', this.props.region, this.props.area, this.props.space, '')

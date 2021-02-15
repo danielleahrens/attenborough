@@ -48,7 +48,7 @@ class Metric extends Component {
     const requestOptions = {
       headers: {'Authorization': 'Basic '+btoa(this.props.username + ':' + this.props.password)},
     }
-    fetch("http://192.168.1.10:80/sensor/metric" + query, requestOptions)
+    fetch("https://cenozoa.danielleahrens.com/api/v1/sensor/metric" + query, requestOptions)
       .then(res => res.json())
       .then(
         (result) => {

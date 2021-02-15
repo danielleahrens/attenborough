@@ -71,7 +71,7 @@ class Alert extends Component {
         },
         body: JSON.stringify(body)
       }
-      fetch('http://192.168.1.10:80/sensor/metric/alert', requestOptions)
+      fetch('https://cenozoa.danielleahrens.com/api/v1/sensor/metric/alert', requestOptions)
         .then(response => console.log(response.json()))
       this.props.alertCallback('Metric', this.props.region, this.props.area, this.props.space, '')
     } else {

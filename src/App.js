@@ -13,7 +13,7 @@ class App extends React.Component {
     region: '',
     area: '',
     space: '',
-    url: 'http://localhost:5000'
+    url: 'https://cenozoa.danielleahrens.com'
   }
 
   callbackFunction(displayComponent, region, area, space, sensor) {

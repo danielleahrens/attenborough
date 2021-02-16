@@ -116,11 +116,11 @@ class Metric extends Component {
                 <h2 className="metric-region">{this.props.region.charAt(0).toUpperCase() + this.props.region.slice(1)}</h2>
                 {(this.props.area != '') ?
                 <div>
-                  <a className="collapse-false"><i class="fas fa-chevron-up"></i></a><h3 className="metric-area">{this.props.area}</h3>
+                  <h3 className="metric-area">{this.props.area}</h3>
                   {Object.keys(this.state.locations).map((location) => {
                     return (
                       <div>
-                        <a className="collapse-false"><i class="fas fa-chevron-up"></i></a><h4 className="metric-space">{location}</h4>
+                        <h4 className="metric-space">{location}</h4>
                         {Object.keys(this.state['locations'][[location]]).map((sensor) => {
                         return (
                           <SensorMetric
@@ -140,9 +140,7 @@ class Metric extends Component {
                   {(Object.keys(this.state[[this.props.region]])).map((area) => {
                     return (
                       <div>
-                        <div className="metric-area-wrapper">
-                          <a className="collapse-false"><i class="fas fa-chevron-up"></i></a><h3 className="metric-area">{area}</h3>
-                        </div>
+                        <h3 className="metric-area">{area}</h3>
                         {this.state[[this.props.region]][[area]].map((space) => {
                           return (
                             <div>
@@ -150,9 +148,7 @@ class Metric extends Component {
                                 if (space == presentlocation) {
                                   return (
                                     <div>
-                                      <div className="metric-space-wrapper">
-                                        <a className="collapse-false"><i class="fas fa-chevron-up"></i></a><h4 className="metric-space">{space}</h4>
-                                      </div>
+                                      <h4 className="metric-space">{space}</h4>
                                       {Object.keys(this.state['locations'][[space]]).map((sensor) => {
                                       return (
                                         <SensorMetric

@@ -11,35 +11,16 @@
   margin-right: 3%;
 }
 
-.metric-area-wrapper {
-  display: flex;
+.metric-area {
+  text-align: left;
   margin-left: 5%;
   margin-right: 5%;
 }
 
-.metric-area {
-  text-align: left;
-}
-
-.metric-space-wrapper {
-  display: flex;
-  margin-left: 7%;
-  margin-right: 7%;
-}
-
 .metric-space {
   text-align: left;
-
-}
-
-.collapse-false {
-  transform: rotate(180deg);
-  padding: 5px;
-}
-
-.collapse-true {
-  transform: rotate(90deg);
-  padding: 5px;
+  margin-left: 7%;
+  margin-right: 7%;
 }
 
 h2 {

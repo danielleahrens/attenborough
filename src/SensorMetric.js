@@ -10,7 +10,7 @@ class SensorMetric extends Component {
         {(measurements) ?
           <div>
             <div className="metric-sensor">
-              <a className="collapse-false"><i class="fas fa-chevron-up"></i></a><h5 className="metric-sensor-h5">{sensor}</h5>
+              <h5>{sensor}</h5>
               <div className="metric-sensor-actions-wrapper">
               <div className="metric-sensor-action">
                 <a onClick={() => {this.props.sensorMetricCallback('MetricDetail', {sensor})}}>
@@ -84,9 +84,7 @@ class SensorMetric extends Component {
 
           :
           <div>
-            <div className="metric-sensor">
-              <a className="collapse-false"><i class="fas fa-chevron-up"></i></a><h5 className="metric-sensor-h5">{sensor}</h5>
-            </div>
+            <h5 className="metric-sensor-h5">{sensor}</h5>
             <p className="metric-measurement-error">The {sensor} sensor hasn't logged any measurements in the last 24 hours.</p>
           </div>
           }

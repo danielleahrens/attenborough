@@ -66,6 +66,7 @@ class MetricDetail extends Component {
             return(
               <div>
                 <h3 className="detail-h3">{measurement.charAt(0).toUpperCase() + measurement.slice(1)}</h3>
+                <div className="detail-graph">
                   <LineChart
                     width={1700}
                     height={400}
@@ -81,6 +82,7 @@ class MetricDetail extends Component {
                     <Line type="monotone" dataKey="alertHigh" stroke="#eb2f2f" yAxisID={0}/>
                     <Line type="monotone" dataKey="alertLow" stroke="#382feb" yAxisID={0}/>
                   </LineChart>
+                </div>
               </div>
             )
           })}

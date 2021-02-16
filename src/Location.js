@@ -3,6 +3,10 @@ import './Location.css';
 
 class Location extends Component {
 
+  state = {
+    errorMessage: null,
+  }
+
   componentDidMount() {
     if(Object.keys(this.props.sensor).includes('location')) {
       var location = this.props.sensor.location
@@ -20,8 +24,26 @@ class Location extends Component {
     this.setState({location: e.target.value})
   }
 
+  handleAuth(e, key) {
+    var auth = {}
+    auth[key] = e.target.value
+    this.setState(auth)
+  }
+
   handleSubmit(e) {
     e.preventDefault()
+    if (
+      !this.state.username ||
+      !this.state.password
+    ) {
+      console.log('ERROR: credentials missing')
+      this.setState({errorMessage: 'ERROR: authentication required to submit'})
+    } else {
+      this.updateLocation()
+    }
+  }
+
+  updateLocation() {
     var body = {}
     body['sensor_id'] = [this.props.sensor['sensor_id']]
     body['sensor_type'] = this.props.sensor['sensor_type']
@@ -31,13 +53,11 @@ class Location extends Component {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'Origin': 'http://localhost:3000',
-        'Access-Control-Allow-Origin': 'http://localhost:3000',
-        'Authorization': 'Basic '+btoa(this.props.username + ':' + this.props.password)
+        'Authorization': 'Basic '+btoa(this.state.username + ':' + this.state.password)
       },
       body: JSON.stringify(body)
     }
-    fetch(this.props.url + '/api/v1/sensor', requestOptions)
+    fetch(this.props.url + '/api/v1/sensor/location', requestOptions)
       .then(response => console.log(response.json()))
     if(this.props.region) {
       this.props.locationCallback('Metric', this.props.region, this.props.area, this.props.space, '')
@@ -51,10 +71,10 @@ class Location extends Component {
       <div className="location">
         {(this.props.sensor) ?
           <div>
-            <div>Update Location of the {this.props.sensor['sensor_id']} Sensor</div>
+            <h2>Update Location of the {this.props.sensor['sensor_id']} Sensor</h2>
             <form>
               <div className="location-form-items-wrapper">
-                <div className="location-form-item">Location:</div>
+                <h3 className="location-form-item">Location:</h3>
                 {(this.props.sensor.location) ?
                   <input
                     className="location-form-item"
@@ -70,6 +90,26 @@ class Location extends Component {
                   />
                 }
               </div>
+              <div className="location-auth-title">Authentication required to update sensor location</div>
+              <div className="location-auth-wrapper">
+                <div className="location-limit-wrapper">
+                  <h3 className="location-limit-title">Username: </h3>
+                  <input
+                    className="location-limit-input"
+                    type="text"
+                    onChange={(e) => {this.handleAuth(e, 'username')}}
+                  />
+                </div>
+                <div className="location-limit-wrapper">
+                  <h3 className="alert-limit-title">Password: </h3>
+                  <input
+                    className="location-limit-input"
+                    type="password"
+                    onChange={(e) => {this.handleAuth(e, 'password')}}
+                  />
+                </div>
+              </div>
+              {(this.state.errorMessage) ? <div>{this.state.errorMessage}</div> : <div/>}
               <input type="submit" value="Submit" onClick={(e) => {this.handleSubmit(e)}}/>
             </form>
           </div>

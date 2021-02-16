@@ -6,23 +6,39 @@
 .alert-limits-wrapper{
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
   margin-left: 10%;
   margin-right: 10%;
   margin-bottom: 50px;
 }
 
+.alert-auth-title {
+  padding: 10px;
+}
+
+.alert-auth-wrapper {
+  display: flex;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
 .alert-limit-wrapper {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  flex-wrap: wrap;
 }
 
 .alert-limit-title {
   text-align: left;
   margin-right: 20px;
+  width: 120px;
 }
 
 .alert-limit-input {
   width: 200px;
+  margin: 5px;
 }

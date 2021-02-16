@@ -1,7 +1,8 @@
 .metric-body {
   text-align: center;
   background-color: white;
-  height: 88vh;
+  height: 93vh;
+  overflow-y: scroll;
 }
 
 .metric-region {
@@ -10,16 +11,35 @@
   margin-right: 3%;
 }
 
-.metric-area {
-  text-align: left;
+.metric-area-wrapper {
+  display: flex;
   margin-left: 5%;
   margin-right: 5%;
 }
 
-.metric-space {
+.metric-area {
   text-align: left;
+}
+
+.metric-space-wrapper {
+  display: flex;
   margin-left: 7%;
   margin-right: 7%;
+}
+
+.metric-space {
+  text-align: left;
+
+}
+
+.collapse-false {
+  transform: rotate(180deg);
+  padding: 5px;
+}
+
+.collapse-true {
+  transform: rotate(90deg);
+  padding: 5px;
 }
 
 h2 {

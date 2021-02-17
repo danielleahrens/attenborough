@@ -20,6 +20,14 @@ class Alert extends Component {
     }
   }
 
+  handleBack() {
+    if(this.props.region) {
+      this.props.alertCallback('Metric', this.props.region, this.props.area, this.props.space, '')
+    } else {
+      this.props.alertCallback('Farm', '', '', '', '')
+    }
+  }
+
   handleChange(e, measurement, limitType) {
     var newAlert = this.state.alert
     if (newAlert[[measurement]]) {
@@ -99,6 +107,7 @@ class Alert extends Component {
   render() {
     return (
       <div className="alert">
+        <a className="back" onClick={() => {this.handleBack()}}><i class="arrow left"></i>Back</a>
         <h2>Update {this.props.sensor['sensor_id']}'s Alerts</h2>
         {(this.props.sensor['alert']) ?
         <form>

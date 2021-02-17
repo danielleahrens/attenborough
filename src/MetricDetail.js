@@ -51,6 +51,14 @@ class MetricDetail extends Component {
     this.setState({data: data})
   }
 
+  handleBack() {
+    if(this.props.region) {
+      this.props.metricDetailCallback('Metric', this.props.region, this.props.area, this.props.space, '')
+    } else {
+      this.props.metricDetailCallback('Farm', '', '', '', '')
+    }
+  }
+
   render() {
     const { error, isMetricsLoaded } = this.state
     if (error) {
@@ -60,6 +68,7 @@ class MetricDetail extends Component {
     } else {
       return (
         <div className="detail">
+          <a className="back" onClick={() => {this.handleBack()}}><i class="arrow left"></i>Back</a>
           <h2 className="detail-h2">Up to One Week of Measurement Data for the {this.props.sensor['sensor_id']} Sensor</h2>
           {Object.keys(this.state.data).map((measurement) => {
             var data = this.state.data

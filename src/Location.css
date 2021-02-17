@@ -12,3 +12,33 @@
 .location-form-item {
   margin: 10px;
 }
+
+.location-auth-title {
+  padding: 10px;
+}
+
+.location-auth-wrapper {
+  display: flex;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.location-limit-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.location-limit-title {
+  text-align: left;
+  margin-right: 20px;
+  width: 120px;
+}
+
+.location-limit-input {
+  width: 200px;
+  margin: 5px;
+}

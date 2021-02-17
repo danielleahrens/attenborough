@@ -9,7 +9,6 @@ class SensorMetric extends Component {
       <div>
         {(measurements) ?
           <div>
-            {console.log(this.props)}
             <div className="metric-sensor">
               <h5>{sensor}</h5>
               <div className="metric-sensor-actions-wrapper">
@@ -85,9 +84,7 @@ class SensorMetric extends Component {
 
           :
           <div>
-            <div className="metric-sensor">
-              <h5>{sensor}</h5>
-            </div>
+            <h5 className="metric-sensor-h5">{sensor}</h5>
             <p className="metric-measurement-error">The {sensor} sensor hasn't logged any measurements in the last 24 hours.</p>
           </div>
           }

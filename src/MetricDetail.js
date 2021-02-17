@@ -12,7 +12,10 @@ class MetricDetail extends Component {
 
   componentDidMount() {
     var query = '?s=' + this.props.sensor['sensor_id']
-    fetch("http://localhost:5000/sensor/metric/detail" + query)
+    const requestOptions = {
+      headers: {'Authorization': 'Basic '+btoa(this.props.username + ':' + this.props.password)},
+    }
+    fetch(this.props.url + "/api/v1/sensor/metric/detail" + query, requestOptions)
       .then(res => res.json())
       .then(
         (result) => {
@@ -32,7 +35,6 @@ class MetricDetail extends Component {
 
   structureData() {
     var data = {}
-    console.log('heres state', this.state)
     Object.keys(this.state.sensorMetrics[0]['measurement']).map((measurement) => {
       data[[measurement]] = []
       this.state.sensorMetrics[0]['measurement'][[measurement]].map((dataPoint) => {
@@ -64,6 +66,7 @@ class MetricDetail extends Component {
             return(
               <div>
                 <h3 className="detail-h3">{measurement.charAt(0).toUpperCase() + measurement.slice(1)}</h3>
+                <div className="detail-graph">
                   <LineChart
                     width={1700}
                     height={400}
@@ -79,6 +82,7 @@ class MetricDetail extends Component {
                     <Line type="monotone" dataKey="alertHigh" stroke="#eb2f2f" yAxisID={0}/>
                     <Line type="monotone" dataKey="alertLow" stroke="#382feb" yAxisID={0}/>
                   </LineChart>
+                </div>
               </div>
             )
           })}

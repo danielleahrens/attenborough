@@ -1,10 +1,15 @@
 .metric-measurement-error {
   text-align: left;
-  width: 100%;
   margin-top: 20px;
   margin-bottom: 20px;
-  margin-left: 10.5%;
-  margin-right: 30%;
+  margin-left: 13%;
+  margin-right: 10%;
+}
+
+.metric-sensor-h5 {
+  text-align: left;
+  margin-left: 9%;
+  margin-right: 9%;
 }
 
 .metric-sensor {
@@ -14,23 +19,24 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .metric-sensor-actions-wrapper {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
   margin-left: 7.5%;
-  margin-right: 30%;
 }
 
 .metric-sensor-action {
   border: 1px solid black;
   border-radius: 5px;
   padding: 5px;
-  margin-left: 10px;
-  margin-right: 10px;
   background-color: #c3c6c9;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .metric-sensor-action:hover {
@@ -40,6 +46,7 @@
 .metric-measurements-wrapper {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: flex-start;
   margin-right: 10%;
   margin-left: 10%;
@@ -70,4 +77,27 @@
 
 .metric-measurement-alert {
   background-color: red;
+}
+
+@media only screen and (max-width: 740px) {
+  .metric-sensor-h5 {
+    margin-right: 100px;
+  }
+
+  .metric-sensor-actions-wrapper {
+    justify-content: flex-start;
+    margin-left: 20px;
+  }
+
+  .metric-sensor-action {
+
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .metric-sensor-action {
+    margin-right: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
 }

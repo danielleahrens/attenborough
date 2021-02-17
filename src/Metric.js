@@ -45,7 +45,10 @@ class Metric extends Component {
       })
       query = query.substring(0, query.length-3)
     }
-    fetch("http://localhost:5000/sensor/metric" + query)
+    const requestOptions = {
+      headers: {'Authorization': 'Basic '+btoa(this.props.username + ':' + this.props.password)},
+    }
+    fetch(this.props.url + "/api/v1/sensor/metric/recent" + query, requestOptions)
       .then(res => res.json())
       .then(
         (result) => {

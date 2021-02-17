@@ -4,31 +4,38 @@ import './Alert.css';
 class Alert extends Component {
 
   state = {
-    errorMessage: null
+    errorMessage: null,
   }
 
   componentDidMount() {
-    var alert = this.props.sensor.alert
-    this.setState({
-      alert: alert
-    })
+    if(Object.keys(this.props.sensor).includes('alert')) {
+      var alert = this.props.sensor.alert
+      this.setState({
+        alert: alert
+      })
+    } else {
+      this.setState({
+        alert: {}
+      })
+    }
   }
 
   handleChange(e, measurement, limitType) {
-    var newAlert = {}
-    if (this.state.alert) {
-      newAlert = this.state.alert
-      if (newAlert[[measurement]]) {
-        newAlert[[measurement]][[limitType]]['limit'] = parseFloat(e.target.value)
-      } else {
-        newAlert[[measurement]] = {[limitType]: {'limit': parseFloat(e.target.value), 'alerting': 'False'}}
-      }
+    var newAlert = this.state.alert
+    if (newAlert[[measurement]]) {
+      newAlert[[measurement]][[limitType]] = {'limit': parseFloat(e.target.value), 'alerting': 'False'}
     } else {
       newAlert[[measurement]] = {[limitType]: {'limit': parseFloat(e.target.value), 'alerting': 'False'}}
     }
     this.setState({
       alert: newAlert
     })
+  }
+
+  handleAuth(e, key) {
+    var auth = {}
+    auth[key] = e.target.value
+    this.setState(auth)
   }
 
   handleSubmit(e) {
@@ -44,6 +51,9 @@ class Alert extends Component {
       ) {
         console.log('ERROR: limit type missing')
         this.setState({errorMessage: "ERROR: All limit types fields must be filled in to submit"})
+      } else if (!this.state.username || !this.state.password) {
+        console.log('ERROR: credentials missing')
+        this.setState({errorMessage: "ERROR: authentication required to submit"})
       } else {
         this.setState({errorMessage: null})
       }
@@ -62,12 +72,25 @@ class Alert extends Component {
 
       const requestOptions = {
         method: 'PUT',
-        headers: {'Content-Type': 'application/json', 'Origin': 'http://localhost:3000', 'Access-Control-Allow-Origin': 'http://localhost:3000'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Basic '+btoa(this.state.username + ':' + this.state.password)
+        },
         body: JSON.stringify(body)
       }
-      fetch('http://localhost:5000/sensor/metric/alert', requestOptions)
-        .then(response => console.log(response.json()))
-      this.props.alertCallback('Metric', this.props.region, this.props.area, this.props.space, '')
+      fetch(this.props.url + '/api/v1/sensor/metric/alert', requestOptions)
+        .then(response => {
+          if(!response.ok) {
+            throw new Error(response.status);
+          } else {
+            this.props.alertCallback('Metric', this.props.region, this.props.area, this.props.space, '')
+          }
+        })
+        .catch((error) => {
+          console.log('ERROR: an error occurred while updating the alert limits.', error)
+          this.setState({errorMessage: 'An error occurred while updating the alert limits, please ensure you have the appropriate credentials and try again.'})
+        })
+
     } else {
       console.log('ERROR: missing form data, will not submit update request')
     }
@@ -85,15 +108,6 @@ class Alert extends Component {
                 <h3>{measurement}</h3>
                 <div className="alert-limits-wrapper">
                   <div className="alert-limit-wrapper">
-                    <h4 className="alert-limit-title">Upper Limit:</h4>
-                    <input
-                      className="alert-limit-input"
-                      type="number"
-                      placeholder={this.props.sensor['alert'][[measurement]]['upper']['limit']}
-                      onChange={(e) => {this.handleChange(e, measurement, 'upper')}}
-                    />
-                  </div>
-                  <div className="alert-limit-wrapper">
                     <h4 className="alert-limit-title">Lower Limit:</h4>
                     <input
                       className="alert-limit-input"
@@ -102,10 +116,38 @@ class Alert extends Component {
                       onChange={(e) => {this.handleChange(e, measurement, 'lower')}}
                     />
                   </div>
+                  <div className="alert-limit-wrapper">
+                    <h4 className="alert-limit-title">Upper Limit:</h4>
+                    <input
+                      className="alert-limit-input"
+                      type="number"
+                      placeholder={this.props.sensor['alert'][[measurement]]['upper']['limit']}
+                      onChange={(e) => {this.handleChange(e, measurement, 'upper')}}
+                    />
+                  </div>
                 </div>
               </div>
             )
           })}
+          <div className="alert-auth-title">Authentication required to update alert levels</div>
+          <div className="alert-auth-wrapper">
+            <div className="alert-limit-wrapper">
+              <h4 className="alert-limit-title">Username: </h4>
+              <input
+                className="alert-limit-input"
+                type="text"
+                onChange={(e) => {this.handleAuth(e, 'username')}}
+              />
+            </div>
+            <div className="alert-limit-wrapper">
+              <h4 className="alert-limit-title">Password: </h4>
+              <input
+                className="alert-limit-input"
+                type="password"
+                onChange={(e) => {this.handleAuth(e, 'password')}}
+              />
+            </div>
+          </div>
           {(this.state.errorMessage) ? <div>{this.state.errorMessage}</div> : <div/>}
           <input type="submit" value="Submit" onClick={(e) => {this.handleSubmit(e)}}></input>
         </form>
@@ -117,14 +159,6 @@ class Alert extends Component {
                 <h3>{measurement}</h3>
                 <div className="alert-limits-wrapper">
                   <div className="alert-limit-wrapper">
-                    <h4 className="alert-limit-title">Upper Limit:</h4>
-                    <input
-                      className="alert-limit-input"
-                      type="number"
-                      onChange={(e) => {this.handleChange(e, measurement, 'upper')}}
-                    />
-                  </div>
-                  <div className="alert-limit-wrapper">
                     <h4 className="alert-limit-title">Lower Limit:</h4>
                     <input
                       className="alert-limit-input"
@@ -132,10 +166,37 @@ class Alert extends Component {
                       onChange={(e) => {this.handleChange(e, measurement, 'lower')}}
                     />
                   </div>
+                  <div className="alert-limit-wrapper">
+                    <h4 className="alert-limit-title">Upper Limit:</h4>
+                    <input
+                      className="alert-limit-input"
+                      type="number"
+                      onChange={(e) => {this.handleChange(e, measurement, 'upper')}}
+                    />
+                  </div>
                 </div>
               </div>
             )
           })}
+          <div className="alert-auth-title">Authentication required to update alert levels</div>
+          <div className="alert-auth-wrapper">
+            <div className="alert-limit-wrapper">
+              <h4 className="alert-limit-title">Username: </h4>
+              <input
+                className="alert-limit-input"
+                type="text"
+                onChange={(e) => {this.handleAuth(e, 'username')}}
+              />
+            </div>
+            <div className="alert-limit-wrapper">
+              <h4 className="alert-limit-title">Password: </h4>
+              <input
+                className="alert-limit-input"
+                type="password"
+                onChange={(e) => {this.handleAuth(e, 'password')}}
+              />
+            </div>
+          </div>
           {(this.state.errorMessage) ? <div>{this.state.errorMessage}</div> : <div/>}
           <input type="submit" value="Submit" onClick={(e) => {this.handleSubmit(e)}}></input>
         </form>

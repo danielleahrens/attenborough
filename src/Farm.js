@@ -102,7 +102,10 @@ class Farm extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:5000/sensor")
+    const requestOptions = {
+      headers: {'Authorization': 'Basic '+btoa(this.props.username + ':' + this.props.password)},
+    }
+    fetch(this.props.url + "/api/v1/sensor", requestOptions)
       .then(res => res.json())
       .then(
         (result) => {
@@ -197,7 +200,7 @@ class Farm extends Component {
                 </div>
                 <div className="house-area">
                   <h3 className="farm-region-h3"><a className="house-area-label" onClick={() => {this.props.farmCallback('Metric', 'house', 'basement', '')}}>Basement</a></h3>
-                  {(Object.keys(this.state.locations['porch']['sensors']).length > 0) ?
+                  {(Object.keys(this.state.locations['basement']['sensors']).length > 0) ?
                     <div className="sensors">
                       {Object.keys(this.state.locations.basement.sensors).map((sensor) => {return <div className="sensor">{sensor}</div>})}
                     </div>
@@ -351,6 +354,18 @@ class Farm extends Component {
                 : <div/>}
               </div>
             </div>
+          </div>
+          <div className="farm-no-region">
+            <h2 className="farm-region-h2"><a className="farm-region-label">Unallocated Sensors</a></h2>
+            {this.state.sensors.map((sensor) => {
+              return (
+                <div className="sensors">
+                  {(!Object.keys(sensor).includes('location')) ?
+                    <a className="sensor" onClick={() => {this.props.farmCallback('Location', '', '', '', sensor)}}>{sensor['sensor_id']}</a>
+                  : <div/>}
+                </div>
+              )
+            })}
           </div>
         </div>
       );

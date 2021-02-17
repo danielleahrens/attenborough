@@ -79,8 +79,18 @@ class Alert extends Component {
         body: JSON.stringify(body)
       }
       fetch(this.props.url + '/api/v1/sensor/metric/alert', requestOptions)
-        .then(response => console.log(response.json()))
-      this.props.alertCallback('Metric', this.props.region, this.props.area, this.props.space, '')
+        .then(response => {
+          if(!response.ok) {
+            throw new Error(response.status);
+          } else {
+            this.props.alertCallback('Metric', this.props.region, this.props.area, this.props.space, '')
+          }
+        })
+        .catch((error) => {
+          console.log('ERROR: an error occurred while updating the alert limits.', error)
+          this.setState({errorMessage: 'An error occurred while updating the alert limits, please ensure you have the appropriate credentials and try again.'})
+        })
+
     } else {
       console.log('ERROR: missing form data, will not submit update request')
     }

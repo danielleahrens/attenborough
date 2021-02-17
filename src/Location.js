@@ -48,7 +48,6 @@ class Location extends Component {
     body['sensor_id'] = [this.props.sensor['sensor_id']]
     body['sensor_type'] = this.props.sensor['sensor_type']
     body['location'] = this.state.location
-    console.log('body', body)
     const requestOptions = {
       method: 'PUT',
       headers: {
@@ -58,12 +57,21 @@ class Location extends Component {
       body: JSON.stringify(body)
     }
     fetch(this.props.url + '/api/v1/sensor/location', requestOptions)
-      .then(response => console.log(response.json()))
-    if(this.props.region) {
-      this.props.locationCallback('Metric', this.props.region, this.props.area, this.props.space, '')
-    } else {
-      this.props.locationCallback('Farm', '', '', '', '')
-    }
+      .then(response => {
+        if(!response.ok) {
+          throw new Error(response.status);
+        } else {
+          if(this.props.region) {
+            this.props.locationCallback('Metric', this.props.region, this.props.area, this.props.space, '')
+          } else {
+            this.props.locationCallback('Farm', '', '', '', '')
+          }
+        }
+      })
+      .catch((error) => {
+        console.log('ERROR: an error occurred while updating the sensor location.', error)
+        this.setState({errorMessage: 'An error occurred while updating the sensor location, please ensure you have the appropriate credentials and try again.'})
+      })
   }
 
   render() {

@@ -85,6 +85,10 @@ class Metric extends Component {
     })
   }
 
+  handleBack() {
+    this.props.metricCallback('Farm', '', '', '', '')
+  }
+
   metricCallbackFunction(displayComponent, sensor) {
     var sensorData = {}
     this.state.sensorMetrics.map((sensorMetric) => {
@@ -110,6 +114,7 @@ class Metric extends Component {
     } else {
       return (
         <div className="metric-body">
+          <a className="back" onClick={() => {this.handleBack()}}><i class="arrow left"></i>Back</a>
           {(Object.keys(this.state.locations).length > 0) ?
             <div>
               <div>

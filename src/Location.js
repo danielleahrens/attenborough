@@ -20,6 +20,14 @@ class Location extends Component {
     }
   }
 
+  handleBack() {
+    if(this.props.region) {
+      this.props.locationCallback('Metric', this.props.region, this.props.area, this.props.space, '')
+    } else {
+      this.props.locationCallback('Farm', '', '', '', '')
+    }
+  }
+
   handleChange(e) {
     this.setState({location: e.target.value})
   }
@@ -77,8 +85,9 @@ class Location extends Component {
   render() {
     return (
       <div className="location">
+        <a className="back" onClick={() => {this.handleBack()}}><i class="arrow left"></i>Back</a>
         {(this.props.sensor) ?
-          <div>
+          <div>  
             <h2>Update Location of the {this.props.sensor['sensor_id']} Sensor</h2>
             <form>
               <div className="location-form-items-wrapper">

@@ -36,7 +36,7 @@ View the current alert limits for a given sensor (if they're set) and update tho
 ### Update Sensor's Location page:
 View the current location for a given sensor (if it is set) and update the location. Updating the location requires additional authentication beyond the basic authentication from initial log in.
 
-![Update sensor location page](https://user-images.githubusercontent.com/31782840/108781732-57683e80-7538-11eb-90ad-fdc0c3e79e83.png)
+![Update sensor location page](https://user-images.githubusercontent.com/31782840/108782340-63a0cb80-7539-11eb-9b8f-82876e0f60fd.png)
 
 ### Detailed Metrics page:
 View a weeks worth of metrics for a given sensor along with the current alert limits for each measurement type.

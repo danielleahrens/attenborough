@@ -13,8 +13,8 @@ class App extends React.Component {
     region: '',
     area: '',
     space: '',
-    url: 'https://cenozoa.danielleahrens.com'
-    // url: 'http://localhost:5000'
+    // url: 'https://cenozoa.danielleahrens.com'
+    url: 'http://localhost:5000'
   }
 
   callbackFunction(displayComponent, region, area, space, sensor) {
@@ -41,7 +41,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <header className="app-header"><h1><a onClick={() => {this.setState({display:'Farm'})}}>Welcome to the IoT Farm!</a></h1></header>
+        <header className="app-header"><h1><a onClick={() => {this.setState({display:'Farm'})}}>Welcome to the Cenozoa IoT Farm!</a></h1></header>
         <body>
           {(this.state.display === '') ?
             <form className="app-auth">

@@ -64,7 +64,7 @@ class Location extends Component {
       },
       body: JSON.stringify(body)
     }
-    fetch(this.props.url + '/api/v1/sensor/location', requestOptions)
+    fetch(this.props.url + '/api/v1/sensor', requestOptions)
       .then(response => {
         if(!response.ok) {
           throw new Error(response.status);
@@ -87,7 +87,7 @@ class Location extends Component {
       <div className="location">
         <a className="back" onClick={() => {this.handleBack()}}><i class="arrow left"></i>Back</a>
         {(this.props.sensor) ?
-          <div>  
+          <div>
             <h2>Update Location of the {this.props.sensor['sensor_id']} Sensor</h2>
             <form>
               <div className="location-form-items-wrapper">

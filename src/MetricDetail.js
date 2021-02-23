@@ -12,10 +12,7 @@ class MetricDetail extends Component {
 
   componentDidMount() {
     var query = '?s=' + this.props.sensor['sensor_id']
-    const requestOptions = {
-      headers: {'Authorization': 'Basic '+btoa(this.props.username + ':' + this.props.password)},
-    }
-    fetch(this.props.url + "/api/v1/sensor/metric/detail" + query, requestOptions)
+    fetch(this.props.url + "/api/v1/sensor/metric/detail" + query)
       .then(res => res.json())
       .then(
         (result) => {
